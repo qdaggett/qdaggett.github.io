@@ -15,18 +15,5 @@ source "https://rubygems.org"
 
 gem "webrick"
 gem "kramdown-parser-gfm"
-gem "jekyll", "~> 3.7"
-gem "minimal-mistakes-jekyll"
-
-
-# The following plugins are automatically loaded by the theme-gem:
-#   gem "jekyll-paginate"
-#   gem "jekyll-sitemap"
-#   gem "jekyll-gist"
-#   gem "jekyll-feed"
-#   gem "jekyll-include-cache"
-#
-# If you have any other plugins, put them here!
-# Cf. https://jekyllrb.com/docs/plugins/installation/
-group :jekyll_plugins do
-end
+gem "github-pages", group: :jekyll_plugins
+gem "jekyll-include-cache", group: :jekyll_plugins
