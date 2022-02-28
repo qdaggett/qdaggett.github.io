@@ -1,22 +1,23 @@
----
-layout: archive
----
+<canvas id="unity-canvas" width=960 height=600></canvas>
+<script src="{{ site.baseurl }}/assets/unity/{{page.unity_dir}}/Build/Webgl.loader.js"></script>
+<script>
 
-{{ content }}
-
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-
-{% if paginator %}
-  {% assign posts = paginator.posts %}
-{% else %}
-  {% assign posts = site.posts %}
-{% endif %}
-
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% for post in posts %}
-    {% include archive-single.html type=entries_layout %}
-  {% endfor %}
-</div>
-
-{% include paginator.html %}
+	var canvas = document.querySelector("#unity-canvas");
+	var buildUrl = "{{ site.baseurl }}/assets/unity/{{page.unity_dir}}/Build";
+	var config = {
+		dataUrl: buildUrl + "/Webgl.data",
+        frameworkUrl: buildUrl + "/Webgl.framework.js",
+        codeUrl: buildUrl + "/Webgl.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Wubs",
+        productName: "ComputerEscapeRoom",
+        productVersion: "2.0.2",
+	};
+	var loaderUrl = buildUrl + "/Webgl.loader.js";
+	var script = document.createElement("script");
+	script.src = loaderUrl;
+	script.onload = () => {
+		createUnityInstance(canvas, config);
+	}
+    document.body.appendChild(script);
+</script>
